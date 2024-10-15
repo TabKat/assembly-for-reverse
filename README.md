@@ -380,6 +380,37 @@ xor rax, rax
 
 Always is **0**
 
+### JUMP instruction
+
+This is how obfuscator works
+
+```asm
+jmp qword ptr ds:[0x0000000000407070]
+mov rbx, 3
+```
+
+Address of command **mov rbx, 3** is **0000000000401570**
+So jump on memory address where that contains address of our command.
+
+Important!
+This technic did not work in **.data** segment. It works in **.bss** segment
+
+**TEST** does the same as **AND** , but the result of the **AND** operation is discarded; just the appropriate flags are set. \
+And it's the same with **CMP** vs **SUB** - **CMP** doesn't save the result of the subtraction, it just sets the appropriate flags (e.g. zero, carry)
+
+**TEST** instruction uses **AND** logic
+**CMP** instruction uses **SUB** instruction
+
+JZ = Jump if Zero \
+JE = JUmp if Equal \
+JNZ = Jump if Not Zero \
+JNE = Jump if Not Equal \
+
+JC = Jump if Carry \
+JB = Jump if Below \
+JNC = Jump if No Carry \
+JAE = Jump if Above or Equal
+
 
 
 
