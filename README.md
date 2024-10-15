@@ -245,6 +245,141 @@ These flags are part of the processor's status register and are automatically se
 
 The **carry flag (CF)** is set when the result of **an unsigned** arithmetic operation is **too large** to fit into the destination. The **overflow flag (OF)** is set when the result of **a signed** arithmetic operation is **too large** or **too small** to fit into the destination.
 
+## Bitwise operations
+
+To write binary in registers use **0b** for example 0xb0001
+
+### Bitwise AND &
+
+
+<table>
+<tbody><tr>
+<th>bit a</th>
+<th>bit b</th>
+<th><code>a &amp; b</code> (a AND b)
+</th></tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0
+</td></tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0
+</td></tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0
+</td></tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1
+</td></tr></tbody>
+<table>
+
+
+### Bitwise NOT !
+
+<table>
+<tbody>
+<tr>
+    <th>bit a</th>
+    <th>NOT a</th>
+<tr>
+<td>0</td>
+<td>1</td>
+<tr>
+<td>0</td>
+<td>1</td></tr>
+<tr>
+<td>1</td>
+<td>0</td></tr>
+<tr>
+<td>1</td>
+<td>0</td></tr></tbody>
+</table>
+
+
+### Bitwise OR |
+
+<table>
+<tbody><tr>
+<th>bit a</th>
+<th>bit b</th>
+<th>a | b (a OR b)
+</th></tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0
+</td></tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1
+</td></tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1
+</td></tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1
+</td></tr></tbody>
+</table>
+
+
+### Bitwise XOR ^
+
+<table>
+<tbody><tr>
+<th>bit a</th>
+<th>bit b</th>
+<th><code>a ^ b</code> (a XOR b)
+</th></tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0
+</td></tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1
+</td></tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1
+</td></tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0
+</td></tr></tbody></table>
+
+Example how to use bitwise operations:
+
+```asm
+mov rax, 0b0011
+mov rbx, 0b0001
+and rax, rbx
+```
+result is **1**
+
+Another example
+
+```asm
+xor rax, rax
+```
+
+Always is **0**
+
 
 
 
