@@ -243,5 +243,8 @@ Zero Flag (ZF): The ZF is set if the result of an arithmetic or logical operatio
 These flags are part of the processor's status register and are automatically set or cleared by the CPU based on the results of various operations. They play a crucial role in decision-making and controlling the flow of a program.
 
 
+The **carry flag (CF)** is set when the result of **an unsigned** arithmetic operation is **too large** to fit into the destination. The **overflow flag (OF)** is set when the result of **a signed** arithmetic operation is **too large** or **too small** to fit into the destination.
+
+
 
 
