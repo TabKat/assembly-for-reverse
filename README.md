@@ -404,13 +404,77 @@ And it's the same with **CMP** vs **SUB** - **CMP** doesn't save the result of t
 JZ = Jump if Zero \
 JE = JUmp if Equal \
 JNZ = Jump if Not Zero \
-JNE = Jump if Not Equal \
+JNE = Jump if Not Equal 
 
 JC = Jump if Carry \
 JB = Jump if Below \
 JNC = Jump if No Carry \
 JAE = Jump if Above or Equal
 
+JL  = Jump if Less \
+JLE = Jump if Less or equal \
+JG  = Jump if Greater \
+JGE = Jump if Greater or Equal
+
+## Array
+
+Array formula:
+
+```asm
+base + ecx * 8
+```
+
+Where **base** is a base address
+**ecx * 8** is offset
+
+```asm
+mov rbx, 0x0000000000403180
+mov rcx, 0
+loop_start:
+    mov rax, qword ptr [rbx + rcx * 8]
+    inc rcx
+    cmp rcx, 5
+    jl loop_start
+```
+
+LEA Load Effective Address
+
+```asm
+lea rbx, qword ptr [rbx + rcx * 8]
+```
+
+## MUL DIV IMUL
+
+```asm
+mov rax, 3
+mov rbx, 2
+mul rbx
+```
+
+Result is 6. MUL rbx takes arguments from **rax** (3) and multiplies it on **rbx** (2)
 
 
+```asm
+mov edx, 0
+mov eax, 5
+mov ecx, 2
+div ecx
+```
+
+Result will be **rcx** is **2** and **rdx** is **1** (reminder)
+
+IMUL is similar to MUL. 
+
+If IMUL with one operands so result will be saved in **rdx:rax**
+This for multiplies **rax** and result stores in **rdx:rax** pair.
+The most significant 64 bits of the result are stored in **rdx** and the last significant bits stored in **rax**.
+
+If IMUL has two operands
+```asm
+imul rax, rbc
+```
+Result will be stored in register
+
+
+If result is too big the result will be truncated.
 
