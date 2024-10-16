@@ -478,3 +478,54 @@ Result will be stored in register
 
 If result is too big the result will be truncated.
 
+## Creating functions
+
+```asm
+pop rbx
+```
+Take item **from top of the stack** and place it in **rbx** register
+We can use any register for **pop** but **rbx** register is common for that.
+
+Calling convention
+
+```
+function(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+```
+
+```asm
+mov rcx, arg1
+mov rdx, arg2
+mov r8, arg3
+mov r9, arg4
+
+sub rsp, 64 ; shadow space 32 + 4 args * 8
+
+mov qword[rsp + 32], arg5
+mov qword[rsp + 40], arg5
+mov qword[rsp + 48], arg5
+mov qword[rsp + 56], arg5
+call function
+```
+
+**rax** traditionally used to return the result of the function call.
+
+```asm
+push rbp
+mov rbp, rsp
+mov ecx, 1
+mov edx, 2
+mov r8, 3
+mov r9, 4
+call x64_template...; call 0x00004000 - call address without brackets
+add rax, 1 ; continue subroutine...
+nop
+nop
+nop
+push rbp
+mov rbp, rsp
+...
+mov rsp, rbp
+pop rbp
+ret
+```
+
